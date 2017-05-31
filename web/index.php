@@ -38,7 +38,7 @@ if (null !== $userID) {
 
     $attributes = array(
         'voice' => 'alice',
-        'language' => 'en-GB'
+        'language' => 'fr-FR'
     );
 
     $time = "";
@@ -47,8 +47,7 @@ if (null !== $userID) {
     }
 
     $twilioResponse = new Services_Twilio_Twiml();
-    $response = sprintf("The current on-call engineer is %s. %s "
-        . "Please hold while we connect you.",
+    $response = sprintf("Veuillez patienter, nous vous mettons en relation avec %s. %s",
         $user['first_name'],
         $time
         );
