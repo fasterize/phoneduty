@@ -58,6 +58,7 @@ if (null !== $userID) {
         $dialParameters['callerId'] = $callerID;
     }
     if ($scheduleID != $fallbackScheduleID) {
+        $dialParameters['timeout'] = 20; // Avoid voicemail
         $dialParameters['action'] = '/';
         $dialParameters['method'] = 'GET';
     }
