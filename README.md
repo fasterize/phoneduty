@@ -21,6 +21,7 @@ time of the engineer being called as part of the answering message. This may hel
 somebody out of bed, so be gentle :D
 
 You can optionally set PAGERDUTY_FALLBACK_SCHEDULE_ID to a fallback schedule in case the first call fails.
+CALLERID_PREFIX can also be set to customize the caller ID shown on the called phone.
 
 
 # Usage

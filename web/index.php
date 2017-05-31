@@ -18,6 +18,7 @@ $scheduleID = getenv('PAGERDUTY_SCHEDULE_ID');
 $fallbackScheduleID = getenv('PAGERDUTY_FALLBACK_SCHEDULE_ID');
 $APItoken   = getenv('PAGERDUTY_API_TOKEN');
 $domain     = getenv('PAGERDUTY_DOMAIN');
+$callerID   = getenv('CALLERID');
 
 // Should we announce the local time of the on-call person?
 // (helps raise awareness you might be getting somebody out of bed)
@@ -52,15 +53,17 @@ if (null !== $userID) {
         $time
         );
 
-    $twilioResponse->say($response, $attributes);
-    if ($scheduleID == $fallbackScheduleID) {
-        $twilioResponse->dial($user['phone_number']);
-    } else {
-        $twilioResponse->dial($user['phone_number'], array(
-            'action' => '/',
-            'method' => 'GET'
-        ));
+    $dialParameters = array();
+    if ($callerID) {
+        $dialParameters['callerId'] = $callerID;
     }
+    if ($scheduleID != $fallbackScheduleID) {
+        $dialParameters['action'] = '/';
+        $dialParameters['method'] = 'GET';
+    }
+
+    $twilioResponse->say($response, $attributes);
+    $twilioResponse->dial($user['phone_number'], $dialParameters);
 
     // send response
     if (!headers_sent()) {
