@@ -14,7 +14,7 @@ use \DateInterval;
 
 class Pagerduty {
 
-    const DEFAULT_TIMEZONE = 'Pacific/Auckland';
+    const DEFAULT_TIMEZONE = 'Europe/Paris';
 
     protected $APItoken;
     protected $URL;
@@ -29,14 +29,15 @@ class Pagerduty {
      */
     public function __construct($APItoken, $domain) {
         $this->APItoken = $APItoken;
-        $this->URL = "https://{$domain}.pagerduty.com/api/v1";
+        $this->URL = "https://api.pagerduty.com/";
 
         $this->httpClient = new \GuzzleHttp\Client(
             array('defaults' =>
                 array('headers' =>
                     array(
                         'Content-Type' => 'application/json',
-                        'Authorization' => "Token token={$APItoken}"
+                        'Authorization' => "Token token={$APItoken}",
+                        'Accept' => "application/vnd.pagerduty+json;version=2"
                     )
                 )
             )

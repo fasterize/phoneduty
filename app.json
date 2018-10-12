@@ -17,6 +17,9 @@
     },
     "PAGERDUTY_DOMAIN": {
       "description": "The name of your PagerDuty a/c, as it appears in the URL"
+    },
+    "CALLERID": {
+      "description": "The outbound caller ID that the engineer will be shown, e.g. +61261885485"
     }
   }
 }
