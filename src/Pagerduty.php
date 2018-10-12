@@ -103,7 +103,7 @@ class Pagerduty {
             $json = json_decode($response->getBody(), true);
 
             foreach($json['user']['contact_methods'] as $method) {
-                if($method['type'] == 'phone') {
+                if($method['type'] == 'phone_contact_method') {
                     $user = array(
                         'full_name'   => $json['user']['name'],
                         'first_name'  => $this->extractFirstName($json['user']['name']),
